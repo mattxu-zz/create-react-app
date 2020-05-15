@@ -72,7 +72,7 @@ if (process.env.HOST) {
     `If this was unintentional, check that you haven't mistakenly set it in your shell.`
   );
   console.log(
-    `Learn more here: ${chalk.yellow('https://bit.ly/CRA-advanced-config')}`
+    `Learn more here: ${chalk.yellow('https://cra.link/advanced-config')}`
   );
   console.log();
 }
@@ -158,20 +158,19 @@ checkBrowsers(paths.appPath, isInteractive)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
     });
 
-    if (isInteractive || process.env.CI !== 'true') {
+    if (process.env.CI !== 'true') {
       // Gracefully exit when stdin ends
-      process.stdin.on('end', function() {
+      process.stdin.on('end', function () {
         devServer.close();
         process.exit();
       });
-      process.stdin.resume();
     }
   })
   .catch(err => {
